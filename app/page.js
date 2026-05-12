@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import StatBlock from "@/components/StatBlock";
@@ -25,9 +26,9 @@ export default function Home() {
   return (
     <>
       {/* SECTION 1 — Hero */}
-      <section className="bg-background pt-[120px] pb-[100px] px-6">
-        <div className="max-w-7xl mx-auto grid gap-12 md:grid-cols-[3fr_2fr] items-center">
-          <div>
+      <section className="bg-background pt-[120px] pb-[80px] px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl mb-16">
             <div className="text-[11px] uppercase tracking-[2.5px] text-accent font-semibold mb-6">
               Book Coaching &amp; Ghostwriting
             </div>
@@ -58,9 +59,15 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div>
-            <ImagePlaceholder label="Hero photo of Troy" aspectRatio="4 / 5" />
-          </div>
+          <Image
+            src="/images/troy-hero.jpg"
+            alt="Troy Karnes leaning against an adobe wall"
+            width={6000}
+            height={4000}
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            className="w-full h-auto"
+            priority
+          />
         </div>
       </section>
 
