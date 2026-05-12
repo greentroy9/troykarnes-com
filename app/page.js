@@ -26,9 +26,9 @@ export default function Home() {
   return (
     <>
       {/* SECTION 1 — Hero */}
-      <section className="bg-background pt-[120px] pb-[80px] px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-3xl mb-16">
+      <section className="bg-background pt-[120px] pb-[100px] px-6">
+        <div className="max-w-7xl mx-auto grid gap-12 md:grid-cols-[3fr_2fr] items-center">
+          <div>
             <div className="text-[11px] uppercase tracking-[2.5px] text-accent font-semibold mb-6">
               Book Coaching &amp; Ghostwriting
             </div>
@@ -59,15 +59,17 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <Image
-            src="/images/troy-hero.jpg"
-            alt="Troy Karnes leaning against an adobe wall"
-            width={6000}
-            height={4000}
-            sizes="(max-width: 1280px) 100vw, 1280px"
-            className="w-full h-auto"
-            priority
-          />
+          <div>
+            <Image
+              src="/images/troy-mtn.jpg"
+              alt="Troy Karnes in the Colorado foothills"
+              width={1366}
+              height={1708}
+              sizes="(max-width: 768px) 100vw, 40vw"
+              className="w-full h-auto"
+              priority
+            />
+          </div>
         </div>
       </section>
 
