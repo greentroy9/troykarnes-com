@@ -17,7 +17,7 @@ export default function Ghostwriting() {
         I write the book. You put your name on it.
       </p>
       <p className="font-[var(--font-ui)] text-xs uppercase tracking-[1.5px] text-foreground/50">
-        Phase 1 scaffold — full page content comes in Phase 2.
+        Phase 1 scaffold. Full page content comes in Phase 2.
       </p>
     </section>
   );

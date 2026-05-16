@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Begin — Book a Discovery Call | Troy Karnes",
+  title: "Begin: Book a Discovery Call | Troy Karnes",
   description:
     "45 minutes. No pitch. Just a conversation about your book.",
 };
@@ -17,7 +17,7 @@ export default function Begin() {
         45 minutes. No pitch. Just a conversation about your book.
       </p>
       <p className="font-[var(--font-ui)] text-xs uppercase tracking-[1.5px] text-foreground/50">
-        Phase 1 scaffold — TidyCal embed and contact form come in Phase 2.
+        Phase 1 scaffold. TidyCal embed and contact form come in Phase 2.
       </p>
     </section>
   );

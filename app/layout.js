@@ -25,7 +25,7 @@ const franklin = Libre_Franklin({
 });
 
 export const metadata = {
-  title: "Troy Karnes — Book Coach & Ghostwriter",
+  title: "Troy Karnes: Book Coach and Ghostwriter",
   description:
     "I help founders, executives, and consultants write the books they've been carrying.",
 };

@@ -1,5 +1,9 @@
 # CLAUDE.md — troykarnes.com
 
+## Voice and tone
+
+**Required reading before writing any copy: [tone-card.md](tone-card.md).** Troy's voice has specific rules: no em dashes (use commas or parentheses), no AI contrast tropes ("It's not X, it's Y"), no banned verbs (leverage, unlock, transform, etc.). The tone card has signature phrases, sentence rhythm targets, and example paragraphs. Consult it before drafting headlines, body copy, button text, alt text, or page metadata. The ban applies anywhere a reader can see it; code comments are exempt.
+
 ## Project Overview
 
 Build a static marketing website for Troy Karnes, a book coach and ghostwriter. The site is built in Next.js, hosted on Vercel, and uses Notion as a content layer for dynamic content (testimonials, featured Substack posts). Everything else is static.

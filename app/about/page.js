@@ -1,7 +1,7 @@
 export const metadata = {
   title: "About | Troy Karnes",
   description:
-    "Cancer survivor, person in active recovery, author of No Silver Bullets — and the person who helps founders write the book they've been carrying.",
+    "Cancer survivor, person in active recovery, author of No Silver Bullets, and the person who helps founders write the book they've been carrying.",
 };
 
 export default function About() {
@@ -14,7 +14,7 @@ export default function About() {
         About Troy
       </h1>
       <p className="font-[var(--font-ui)] text-xs uppercase tracking-[1.5px] text-foreground/50">
-        Phase 1 scaffold — full page content comes in Phase 2.
+        Phase 1 scaffold. Full page content comes in Phase 2.
       </p>
     </section>
   );

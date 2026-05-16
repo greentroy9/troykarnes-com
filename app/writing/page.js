@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Writing | Troy Karnes",
   description:
-    "HALT on Hump Day — every Wednesday, free, on the things that derail us and the work that lasts.",
+    "HALT Blog. Honest stories and insights about the challenges we all face.",
 };
 
 export default function Writing() {
@@ -14,7 +14,7 @@ export default function Writing() {
         HALT on Hump Day
       </h1>
       <p className="font-[var(--font-ui)] text-xs uppercase tracking-[1.5px] text-foreground/50">
-        Phase 1 scaffold — full page content comes in Phase 2.
+        Phase 1 scaffold. Full page content comes in Phase 2.
       </p>
     </section>
   );
