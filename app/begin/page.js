@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Begin: Book a Discovery Call | Troy Karnes",
+  title: "Apply | Troy Karnes",
   description:
     "45 minutes. No pitch. Just a conversation about your book.",
 };
@@ -11,7 +11,7 @@ export default function Begin() {
         Begin
       </div>
       <h1 className="font-[var(--font-display)] font-bold text-5xl leading-tight mb-6">
-        Book a discovery call
+        Apply Here
       </h1>
       <p className="font-[var(--font-ui)] text-lg text-brand mb-10">
         45 minutes. No pitch. Just a conversation about your book.

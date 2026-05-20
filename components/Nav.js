@@ -34,7 +34,7 @@ export default function Nav() {
             rel="noopener noreferrer"
             className="bg-accent text-background font-medium px-[18px] py-[8px] hover:bg-brand"
           >
-            Book a Call →
+            Apply Here →
           </a>
         </div>
       </div>

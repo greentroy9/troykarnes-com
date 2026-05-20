@@ -6,11 +6,16 @@ export default function TestimonialBlock({ quote, name, title }) {
           &ldquo;
         </span>
         {quote}
+        <span className="text-accent text-3xl leading-none font-[var(--font-display)] ml-1 align-top">
+          &rdquo;
+        </span>
       </blockquote>
       <figcaption className="text-[13px] font-[var(--font-ui)]">
-        <div className="font-semibold">{name}</div>
+        {name && <div className="font-semibold">{name}</div>}
         {title && (
-          <div className="text-foreground/60 mt-1">{title}</div>
+          <div className={`text-foreground/60 ${name ? "mt-1" : ""}`}>
+            {title}
+          </div>
         )}
       </figcaption>
     </figure>

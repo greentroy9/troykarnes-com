@@ -78,13 +78,13 @@ The site must load fast, look professional, and convert three types of visitors:
 ### Navigation (fixed, top)
 
 ```
-[Logo: Troy Karnes] .... [Home] [The Hero's Draft] [Ghostwriting] [About] [Writing] [Book a Call →]
+[Logo: Troy Karnes] .... [Home] [The Hero's Draft] [Ghostwriting] [About] [Read] [Apply Here →]
 ```
 
 - Background: #fefdf8
 - Nav links: Libre Franklin, 13px, weight 500, color #000000, hover #69995d
-- "Book a Call" is a button: background #dc602e, text #fefdf8, padding 8px 18px
-- "Book a Call" links to: https://tidycal.com/troydkarnes/discovery
+- "Apply Here" is a button: background #dc602e, text #fefdf8, padding 8px 18px
+- "Apply Here" links to: https://tidycal.com/troydkarnes/discovery (the project review call booking)
 - Fixed/sticky on scroll
 
 ### Footer (three columns)
@@ -258,7 +258,7 @@ SUBHEAD (Libre Franklin, 17px, color #d4e8ce, centered):
 45 minutes. No pitch. Just a conversation about your book.
 
 BUTTON (background #dc602e, text #fefdf8, padding 18px 40px):
-Book a free discovery call
+Apply Here
 Links to: https://tidycal.com/troydkarnes/discovery
 ```
 
@@ -266,7 +266,7 @@ Links to: https://tidycal.com/troydkarnes/discovery
 
 ### 2. The Hero's Draft (/heros-draft/)
 
-**Primary job:** Convert coaching prospects to discovery calls.
+**Primary job:** Convert coaching prospects to project review calls (the "Apply Here" CTA).
 
 Content to include:
 - Hero: Who it's for and what it is
@@ -277,7 +277,7 @@ Content to include:
 - Price: Starting at $9,000
 - Risk reversal: refundable kickoff, pause rights
 - Testimonials (pulled from Notion, filtered by service = "coaching")
-- Final CTA: Book a discovery call → https://tidycal.com/troydkarnes/discovery
+- Final CTA: Apply Here → https://tidycal.com/troydkarnes/discovery
 
 **Note:** Troy has not yet supplied the EPIC framework phase descriptions. Build the page structure with placeholder text in those sections labeled [EPIC: Edge description], [EPIC: Plot description], [EPIC: Infrastructure description], [EPIC: Compose description]. Troy will fill these in.
 
@@ -285,7 +285,7 @@ Content to include:
 
 ### 3. Ghostwriting (/ghostwriting/)
 
-**Primary job:** Convert ghostwriting prospects to discovery calls. Self-select unqualified buyers before they book.
+**Primary job:** Convert ghostwriting prospects to project review calls (the "Apply Here" CTA). Self-select unqualified buyers before they book.
 
 Content to include:
 - Hero: Who it's for (time is the binding constraint)
@@ -294,7 +294,7 @@ Content to include:
 - Price floor stated clearly: Starting at $30,000
 - What ghostwriting is not (not template-based, not AI-generated)
 - Testimonials (pulled from Notion, filtered by service = "ghostwriting")
-- Final CTA: Book a discovery call → https://tidycal.com/troydkarnes/discovery
+- Final CTA: Apply Here → https://tidycal.com/troydkarnes/discovery
 
 ---
 
@@ -341,7 +341,7 @@ Content to include:
 
 ### 7. Begin (/begin/)
 
-**Primary job:** House the discovery call booking and a contact form for general inquiries.
+**Primary job:** House the project review call booking (the "Apply Here" destination) and a contact form for general inquiries.
 
 Content to include:
 - Short intro: what to expect from the call (45 minutes, no pitch)
@@ -349,7 +349,7 @@ Content to include:
 - Simple contact form below for general inquiries (name, email, message)
 - Form submits via a serverless function or Formspree
 
-Navigation CTA "Book a Call" links here or directly to TidyCal — Troy's preference.
+Navigation CTA "Apply Here" links here or directly to TidyCal — Troy's preference.
 
 ---
 

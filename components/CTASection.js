@@ -1,7 +1,7 @@
 export default function CTASection({
   headline = "Ready to write the book you've been carrying?",
   subhead = "45 minutes. No pitch. Just a conversation about your book.",
-  buttonText = "Book a free discovery call",
+  buttonText = "Apply Here",
   buttonHref = "https://tidycal.com/troydkarnes/discovery",
 }) {
   return (
