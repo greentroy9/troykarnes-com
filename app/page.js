@@ -23,15 +23,18 @@ export default function Home() {
               Write Your Hero Draft
             </div>
             <h1 className="font-[var(--font-display)] font-bold text-[52px] leading-[1.1] mb-6">
-              Too much wisdom gets wasted when your book goes unwritten.
+              Too much <span className="text-brand">wisdom</span> gets{" "}
+              <span className="text-accent">wasted</span> when your book goes
+              unwritten.
             </h1>
             <p className="text-[18px] text-brand mb-8">
-              I&apos;m the guide who helps you finish what most people never do.
+              Most people never finish their books. I&apos;m the guide to make
+              sure you do.
             </p>
             <p className="font-[var(--font-body)] text-base leading-[1.75] mb-10 max-w-xl">
-              I work with founders, executives, and consultants who have piles
-              of ideas, talks, and half-drafts ready to polish into a
-              manuscript.
+              I work with founders, executives, consultants, and experts who
+              have piles of ideas, talks, and half-drafts. Let&apos;s turn them
+              into a manuscript.
             </p>
             <div className="flex flex-wrap items-center gap-6">
               <Link

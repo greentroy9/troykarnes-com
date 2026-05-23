@@ -124,8 +124,8 @@ export default function HerosDraft() {
           <div className="grid gap-16 md:grid-cols-[3fr_2fr] items-start">
             <div className="space-y-12">
               {epicPhases.map((phase) => (
-                <div key={phase.letter} className="grid grid-cols-[auto_1fr] gap-8 items-center">
-                  <div className="font-[var(--font-display)] font-bold text-[160px] text-accent leading-none">
+                <div key={phase.letter} className="grid grid-cols-[140px_1fr] gap-8 items-center">
+                  <div className="font-[var(--font-display)] font-bold text-[160px] text-accent leading-none text-center">
                     {phase.letter}
                   </div>
                   <div>
