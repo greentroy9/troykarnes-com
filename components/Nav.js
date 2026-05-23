@@ -5,7 +5,7 @@ const links = [
   { href: "/heros-draft", label: "The Hero's Draft" },
   { href: "/ghostwriting", label: "Ghostwriting" },
   { href: "/about", label: "About" },
-  { href: "/writing", label: "Read" },
+  { href: "/writing", label: "My Work" },
 ];
 
 export default function Nav() {
@@ -28,14 +28,12 @@ export default function Nav() {
               {label}
             </Link>
           ))}
-          <a
-            href="https://tidycal.com/troydkarnes/discovery"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/begin"
             className="bg-accent text-background font-medium px-[18px] py-[8px] hover:bg-brand"
           >
             Apply Here →
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

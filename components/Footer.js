@@ -55,12 +55,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/writing" className="hover:text-accent">
-                  Writing
-                </Link>
-              </li>
-              <li>
-                <Link href="/book" className="hover:text-accent">
-                  No Silver Bullets
+                  My Work
                 </Link>
               </li>
             </ul>

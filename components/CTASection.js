@@ -1,8 +1,10 @@
+import Link from "next/link";
+
 export default function CTASection({
   headline = "Ready to write the book you've been carrying?",
   subhead = "45 minutes. No pitch. Just a conversation about your book.",
   buttonText = "Apply Here",
-  buttonHref = "https://tidycal.com/troydkarnes/discovery",
+  buttonHref = "/begin",
 }) {
   return (
     <section className="bg-brand text-background py-[100px] px-6">
@@ -11,14 +13,12 @@ export default function CTASection({
           {headline}
         </h2>
         <p className="text-[17px] text-[#d4e8ce] mb-10">{subhead}</p>
-        <a
+        <Link
           href={buttonHref}
-          target="_blank"
-          rel="noopener noreferrer"
           className="inline-block bg-accent text-background font-medium text-[15px] px-10 py-[18px] hover:bg-foreground transition-colors"
         >
           {buttonText}
-        </a>
+        </Link>
       </div>
     </section>
   );

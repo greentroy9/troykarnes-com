@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import CTASection from "@/components/CTASection";
 import TestimonialBlock from "@/components/TestimonialBlock";
 
@@ -85,14 +86,12 @@ export default function HerosDraft() {
               process, give you feedback on every chapter, and hold a writing
               lab so you can create a healthy writing habit.
             </p>
-            <a
-              href="https://tidycal.com/troydkarnes/discovery"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/begin"
               className="inline-block bg-accent text-background font-medium text-[15px] px-8 py-4 hover:bg-brand transition-colors"
             >
               Apply Here →
-            </a>
+            </Link>
           </div>
           <div>
             <Image

@@ -140,7 +140,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-block bg-accent text-background font-medium text-[15px] px-8 py-4 hover:bg-brand transition-colors"
               >
-                Buy directly →
+                Buy Directly →
               </a>
               <a
                 href="https://www.audible.com/pd/No-Silver-Bullets-Audiobook/B0G3BVDN83"
@@ -151,7 +151,7 @@ export default function Home() {
                 Listen on Audible →
               </a>
               <Link
-                href="/book"
+                href="/writing"
                 className="text-accent font-medium text-[15px] hover:text-background transition-colors"
               >
                 Read more →

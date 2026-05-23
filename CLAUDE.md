@@ -78,13 +78,13 @@ The site must load fast, look professional, and convert three types of visitors:
 ### Navigation (fixed, top)
 
 ```
-[Logo: Troy Karnes] .... [Home] [The Hero's Draft] [Ghostwriting] [About] [Read] [Apply Here →]
+[Logo: Troy Karnes] .... [Home] [The Hero's Draft] [Ghostwriting] [About] [My Work] [Apply Here →]
 ```
 
 - Background: #fefdf8
 - Nav links: Libre Franklin, 13px, weight 500, color #000000, hover #69995d
 - "Apply Here" is a button: background #dc602e, text #fefdf8, padding 8px 18px
-- "Apply Here" links to: https://tidycal.com/troydkarnes/discovery (the project review call booking)
+- "Apply Here" links to: https://tidycal.com/troydkarnes/intro-call (the project review call booking)
 - Fixed/sticky on scroll
 
 ### Footer (three columns)
@@ -239,7 +239,7 @@ Built around the HALT framework — Hungry, Angry, Lonely, Tired — this is a b
 LINKS:
 [Primary button, background #dc602e] Buy directly → https://buy.stripe.com/cNi00kgxY75zeF0cXg9k400
 [Secondary link, color #fefdf8, underlined] Listen on Audible → https://www.audible.com/pd/No-Silver-Bullets-Audiobook/B0G3BVDN83
-[Text link, color #dc602e] Read more about the book → /book/
+[Text link, color #dc602e] Read more → /writing/
 ```
 
 ---
@@ -259,7 +259,7 @@ SUBHEAD (Libre Franklin, 17px, color #d4e8ce, centered):
 
 BUTTON (background #dc602e, text #fefdf8, padding 18px 40px):
 Apply Here
-Links to: https://tidycal.com/troydkarnes/discovery
+Links to: https://tidycal.com/troydkarnes/intro-call
 ```
 
 ---
@@ -277,7 +277,7 @@ Content to include:
 - Price: Starting at $9,000
 - Risk reversal: refundable kickoff, pause rights
 - Testimonials (pulled from Notion, filtered by service = "coaching")
-- Final CTA: Apply Here → https://tidycal.com/troydkarnes/discovery
+- Final CTA: Apply Here → https://tidycal.com/troydkarnes/intro-call
 
 **Note:** Troy has not yet supplied the EPIC framework phase descriptions. Build the page structure with placeholder text in those sections labeled [EPIC: Edge description], [EPIC: Plot description], [EPIC: Infrastructure description], [EPIC: Compose description]. Troy will fill these in.
 
@@ -294,7 +294,7 @@ Content to include:
 - Price floor stated clearly: Starting at $30,000
 - What ghostwriting is not (not template-based, not AI-generated)
 - Testimonials (pulled from Notion, filtered by service = "ghostwriting")
-- Final CTA: Apply Here → https://tidycal.com/troydkarnes/discovery
+- Final CTA: Apply Here → https://tidycal.com/troydkarnes/intro-call
 
 ---
 
@@ -312,40 +312,27 @@ Content to include:
 
 ---
 
-### 5. No Silver Bullets (/book/)
+### 5. My Work (/writing/)
 
-**Primary job:** Serve existing readers, capture Substack subscribers, soft-introduce services.
+**Primary job:** Serve existing readers, capture Substack subscribers, surface recent writing. Page leads with the book, then drops into the blog.
 
 Content to include:
-- Book cover image
-- Book overview and HALT framework explanation
-- 17 Amazon reviews (pull 3-4 featured ones from Notion)
-- Primary CTA: Buy directly → https://buy.stripe.com/cNi00kgxY75zeF0cXg9k400
-- Secondary CTA: Listen on Audible → https://www.audible.com/pd/No-Silver-Bullets-Audiobook/B0G3BVDN83
-- Substack subscribe block
-- Bottom CTA: "If you're working on your own book" → links to /heros-draft/
+- Book section (dark): cover image, HALT framework headline, two-paragraph blurb, Buy directly + Listen on Audible buttons
+- About the Book: the longer HALT-framework essay
+- 17 Amazon reviews in a carousel (Notion-fed in Phase 3, autorotates every 8s with manual arrows)
+- HALT Blog section: recent posts (Notion-fed in Phase 3, 4-6 entries), "See the full archive" link to Substack
+- Stay in Touch: Substack subscribe embed
+- /book/ route is deprecated; all "More about the book" links point to /writing/
 
 ---
 
-### 6. Writing (/writing/)
-
-**Primary job:** Drive Substack subscriptions. Surface recent writing.
-
-Content to include:
-- Brief intro to the writing (HALT on Hump Day, what it covers)
-- Featured recent posts (pulled from Notion — 4-6 entries)
-- Substack subscribe embed
-- Link out to full Substack archive
-
----
-
-### 7. Begin (/begin/)
+### 6. Begin (/begin/)
 
 **Primary job:** House the project review call booking (the "Apply Here" destination) and a contact form for general inquiries.
 
 Content to include:
 - Short intro: what to expect from the call (45 minutes, no pitch)
-- TidyCal embed: https://tidycal.com/troydkarnes/discovery
+- TidyCal embed: https://tidycal.com/troydkarnes/intro-call
 - Simple contact form below for general inquiries (name, email, message)
 - Form submits via a serverless function or Formspree
 

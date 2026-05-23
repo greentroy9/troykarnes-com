@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export const metadata = {
   title: "Book Ghostwriting | Troy Karnes",
@@ -42,14 +43,12 @@ export default function Ghostwriting() {
             apply for a session where we can discuss your idea.
           </p>
 
-          <a
-            href="https://tidycal.com/troydkarnes/discovery"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/begin"
             className="inline-block bg-accent text-background font-medium text-[15px] px-10 py-[18px] hover:bg-brand transition-colors"
           >
             Apply Here →
-          </a>
+          </Link>
         </div>
       </div>
     </section>
