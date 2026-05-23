@@ -25,9 +25,31 @@ const franklin = Libre_Franklin({
 });
 
 export const metadata = {
-  title: "Troy Karnes: Book Coach and Ghostwriter",
+  metadataBase: new URL("https://troykarnes.com"),
+  title: {
+    template: "%s | Troy Karnes",
+    default: "Troy Karnes: Book Coach and Ghostwriter",
+  },
   description:
     "I help founders, executives, and consultants write the books they've been carrying.",
+  openGraph: {
+    type: "website",
+    siteName: "Troy Karnes",
+    title: "Troy Karnes: Book Coach and Ghostwriter",
+    description:
+      "I help founders, executives, and consultants write the books they've been carrying.",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Troy Karnes: Book Coach and Ghostwriter",
+    description:
+      "I help founders, executives, and consultants write the books they've been carrying.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }) {
