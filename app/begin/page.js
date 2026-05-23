@@ -9,7 +9,7 @@ export const metadata = {
 const FORMSPREE_URL = "https://formspree.io/f/mwvyynwn";
 
 // Where Formspree redirects after a successful submission (in the new tab)
-const NEXT_URL = "https://troykarnes.com/begin#book";
+const NEXT_URL = "https://www.troykarnes.com/begin#book";
 
 export default function Begin() {
   return (

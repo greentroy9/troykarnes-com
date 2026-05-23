@@ -6,6 +6,6 @@ export default function robots() {
         allow: "/",
       },
     ],
-    sitemap: "https://troykarnes.com/sitemap.xml",
+    sitemap: "https://www.troykarnes.com/sitemap.xml",
   };
 }

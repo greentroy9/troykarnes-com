@@ -25,7 +25,7 @@ const franklin = Libre_Franklin({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://troykarnes.com"),
+  metadataBase: new URL("https://www.troykarnes.com"),
   title: {
     template: "%s | Troy Karnes",
     default: "Troy Karnes: Book Coach and Ghostwriter",

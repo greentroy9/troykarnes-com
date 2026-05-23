@@ -1,4 +1,4 @@
-const SITE = "https://troykarnes.com";
+const SITE = "https://www.troykarnes.com";
 
 export default function sitemap() {
   const routes = ["", "/heros-draft", "/ghostwriting", "/about", "/writing", "/begin"];
