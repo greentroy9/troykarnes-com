@@ -12,6 +12,7 @@ export const metadata = {
     title: "HALT",
   },
   icons: {
+    icon: "/icon.png",
     apple: "/journal-icon-192.png",
   },
 };

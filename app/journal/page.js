@@ -11,10 +11,31 @@ const WORKOUTS = [
   "Cardio",
   "Strength Training",
   "Yoga",
+  "Swim",
   "Sauna",
   "Walk",
   "None",
   "Other",
+];
+
+// Post-save affirmations. Troy's voice: plain, a little cheeky, no poster talk.
+const AFFIRMATIONS = [
+  "Another one in the books. Big things start small, ya know.",
+  "Showed up again. That's the whole trick, in fact.",
+  "Left hand high five. You earned it.",
+  "Nobody's handing out medals for this. Doesn't matter. You did it anyway.",
+  "One more day of putting on your own oxygen mask first. Nice work.",
+  "I'll be damned. Look at you, still going.",
+  "You're not special. You just keep doing the thing. Same difference.",
+  "Fuck it, let's try. And you did. Again.",
+  "That's a day. Not a perfect one, probably. A logged one. Those add up.",
+  "People need people. Future you is going to be glad you talked to him today.",
+  "The streak doesn't care how you felt about it. It only counts that you showed up.",
+  "You're a Swiss army knife, not a hammer. Today was one more tool sharpened.",
+  "Small seed, planted. Go water something else now.",
+  "Done. Now go be a person about it.",
+  "Nothing got away from you today. Bank it.",
+  "Ultimately this is the boring, unglamorous part that works. Well done.",
 ];
 
 function ScaleRow({ value, onChange, low, high }) {
@@ -80,6 +101,10 @@ export default function CheckInPage() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [transcribing, setTranscribing] = useState(false);
+  const [otherWorkout, setOtherWorkout] = useState("");
+  const [affirmation] = useState(
+    () => AFFIRMATIONS[Math.floor(Math.random() * AFFIRMATIONS.length)]
+  );
   const fileRef = useRef(null);
   const date = localDate();
 
@@ -155,6 +180,10 @@ export default function CheckInPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...f,
+          workout_type:
+            f.workout_type === "Other" && otherWorkout.trim()
+              ? otherWorkout.trim()
+              : f.workout_type,
           entry_date: date,
           prompt: info?.prompt ? `${info.prompt.theme}: ${info.prompt.prompt}` : null,
         }),
@@ -174,10 +203,12 @@ export default function CheckInPage() {
     return (
       <div className="max-w-2xl mx-auto px-5 pt-20 text-center">
         <div className="text-5xl mb-4">✅</div>
-        <h1 className="font-[var(--font-display)] font-bold text-2xl mb-2">
+        <h1 className="font-[var(--font-display)] font-bold text-2xl mb-3">
           Day {f.days_sober || "logged"}. Done.
         </h1>
-        <p className="text-ink/60 mb-8">See you tomorrow morning.</p>
+        <p className="text-lg font-[var(--font-body)] text-ink/80 leading-relaxed mb-8 max-w-sm mx-auto">
+          {affirmation}
+        </p>
         <a
           href="/journal/dashboard"
           className="inline-block bg-brand text-white rounded-lg px-6 py-3 font-semibold"
@@ -272,6 +303,16 @@ export default function CheckInPage() {
             </button>
           ))}
         </div>
+        {f.workout_type === "Other" && (
+          <input
+            type="text"
+            value={otherWorkout}
+            onChange={(e) => setOtherWorkout(e.target.value)}
+            placeholder="What did you do?"
+            autoFocus
+            className={`${inputCls} mt-2`}
+          />
+        )}
       </Field>
 
       <Field label="How many minutes did you work out?">
