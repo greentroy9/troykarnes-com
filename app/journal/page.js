@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { AFFIRMATIONS } from "@/lib/journal/affirmations";
 
 function localDate() {
   const d = new Date();
@@ -18,25 +19,25 @@ const WORKOUTS = [
   "Other",
 ];
 
-// Post-save affirmations. Troy's voice: plain, a little cheeky, no poster talk.
-const AFFIRMATIONS = [
-  "Another one in the books. Big things start small, ya know.",
-  "Showed up again. That's the whole trick, in fact.",
-  "Left hand high five. You earned it.",
-  "Nobody's handing out medals for this. Doesn't matter. You did it anyway.",
-  "One more day of putting on your own oxygen mask first. Nice work.",
-  "I'll be damned. Look at you, still going.",
-  "You're not special. You just keep doing the thing. Same difference.",
-  "Fuck it, let's try. And you did. Again.",
-  "That's a day. Not a perfect one, probably. A logged one. Those add up.",
-  "People need people. Future you is going to be glad you talked to him today.",
-  "The streak doesn't care how you felt about it. It only counts that you showed up.",
-  "You're a Swiss army knife, not a hammer. Today was one more tool sharpened.",
-  "Small seed, planted. Go water something else now.",
-  "Done. Now go be a person about it.",
-  "Nothing got away from you today. Bank it.",
-  "Ultimately this is the boring, unglamorous part that works. Well done.",
-];
+// Pick a hype line you haven't seen recently. Tracks used indexes in
+// localStorage so the whole pool cycles before anything repeats.
+function pickAffirmation() {
+  const KEY = "halt_affirmations_seen";
+  let seen = [];
+  try {
+    seen = JSON.parse(localStorage.getItem(KEY) || "[]");
+  } catch {}
+  let unseen = AFFIRMATIONS.map((_, i) => i).filter((i) => !seen.includes(i));
+  if (unseen.length === 0) {
+    seen = [];
+    unseen = AFFIRMATIONS.map((_, i) => i);
+  }
+  const idx = unseen[Math.floor(Math.random() * unseen.length)];
+  try {
+    localStorage.setItem(KEY, JSON.stringify([...seen, idx]));
+  } catch {}
+  return AFFIRMATIONS[idx];
+}
 
 function ScaleRow({ value, onChange, low, high }) {
   return (
@@ -102,9 +103,7 @@ export default function CheckInPage() {
   const [error, setError] = useState("");
   const [transcribing, setTranscribing] = useState(false);
   const [otherWorkout, setOtherWorkout] = useState("");
-  const [affirmation] = useState(
-    () => AFFIRMATIONS[Math.floor(Math.random() * AFFIRMATIONS.length)]
-  );
+  const [affirmation, setAffirmation] = useState("");
   const fileRef = useRef(null);
   const date = localDate();
 
@@ -190,6 +189,7 @@ export default function CheckInPage() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Save failed");
+      setAffirmation(pickAffirmation());
       setSaved(true);
       window.scrollTo(0, 0);
     } catch (err) {
