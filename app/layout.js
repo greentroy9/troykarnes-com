@@ -2,6 +2,7 @@ import { Raleway, Libre_Baskerville, Libre_Franklin } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import ChromeGate from "@/components/ChromeGate";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -59,9 +60,13 @@ export default function RootLayout({ children }) {
       className={`${raleway.variable} ${baskerville.variable} ${franklin.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Nav />
+        <ChromeGate>
+          <Nav />
+        </ChromeGate>
         <main className="flex-1">{children}</main>
-        <Footer />
+        <ChromeGate>
+          <Footer />
+        </ChromeGate>
       </body>
     </html>
   );
