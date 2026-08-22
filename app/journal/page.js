@@ -103,6 +103,15 @@ export default function CheckInPage() {
   const [error, setError] = useState("");
   const [transcribing, setTranscribing] = useState(false);
   const [otherWorkout, setOtherWorkout] = useState("");
+  const [workouts, setWorkouts] = useState([]);
+  function toggleWorkout(w) {
+    setWorkouts((cur) => {
+      if (cur.includes(w)) return cur.filter((x) => x !== w);
+      // "None" is exclusive
+      if (w === "None") return ["None"];
+      return [...cur.filter((x) => x !== "None"), w];
+    });
+  }
   const [affirmation, setAffirmation] = useState("");
   const fileRef = useRef(null);
   const date = localDate();
@@ -180,9 +189,11 @@ export default function CheckInPage() {
         body: JSON.stringify({
           ...f,
           workout_type:
-            f.workout_type === "Other" && otherWorkout.trim()
-              ? otherWorkout.trim()
-              : f.workout_type,
+            workouts
+              .map((w) =>
+                w === "Other" && otherWorkout.trim() ? otherWorkout.trim() : w
+              )
+              .join(", ") || null,
           entry_date: date,
           prompt: info?.prompt ? `${info.prompt.theme}: ${info.prompt.prompt}` : null,
         }),
@@ -286,24 +297,28 @@ export default function CheckInPage() {
         </div>
       </Field>
 
-      <Field label="Yesterday's workout">
+      <Field label="Yesterday's workout" hint="Tap everything you did.">
         <div className="grid grid-cols-2 gap-2">
-          {WORKOUTS.map((w) => (
-            <button
-              key={w}
-              type="button"
-              onClick={() => set("workout_type")(w)}
-              className={`py-2.5 rounded-lg border text-sm font-medium ${
-                f.workout_type === w
-                  ? "bg-brand text-white border-brand"
-                  : "bg-white border-divider text-ink/70"
-              }`}
-            >
-              {w}
-            </button>
-          ))}
+          {WORKOUTS.map((w) => {
+            const on = workouts.includes(w);
+            return (
+              <button
+                key={w}
+                type="button"
+                onClick={() => toggleWorkout(w)}
+                className={`py-2.5 rounded-lg border text-sm font-medium ${
+                  on
+                    ? "bg-brand text-white border-brand"
+                    : "bg-white border-divider text-ink/70"
+                }`}
+              >
+                {on ? "✓ " : ""}
+                {w}
+              </button>
+            );
+          })}
         </div>
-        {f.workout_type === "Other" && (
+        {workouts.includes("Other") && (
           <input
             type="text"
             value={otherWorkout}

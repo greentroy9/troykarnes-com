@@ -7,9 +7,8 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  BarChart,
-  Bar,
   CartesianGrid,
+  Legend,
 } from "recharts";
 
 const WINDOWS = [14, 30, 60, 90, 360];
@@ -102,27 +101,42 @@ export default function DashboardPage() {
           : null,
     });
 
-    const series = cur.map((e) => ({
-      date: e.entry_date.slice(5),
-      weight: e.weight,
-      sleep: e.sleep,
-      mood: e.mood,
-      workout: e.workout_minutes,
-      eating: mealAvg(e),
-    }));
+    // Rolling 14-day averages, computed over ALL entries (so the first days of
+    // the window still have a trailing average), then trimmed to the window.
+    const ms = (d) => new Date(`${d}T00:00:00`).getTime();
+    const ROLL = 14 * 86400000;
+    const series = [];
+    let start = 0;
+    for (let i = 0; i < all.length; i++) {
+      const e = all[i];
+      const t = ms(e.entry_date);
+      while (start < i && ms(all[start].entry_date) <= t - ROLL) start++;
+      if (e.entry_date < cutoff) continue;
+      const slice = all.slice(start, i + 1);
+      series.push({
+        date: e.entry_date.slice(5),
+        weight: e.weight,
+        mood: avg(slice.map((x) => x.mood)),
+        sleep: avg(slice.map((x) => x.sleep)),
+        workout: avg(slice.map((x) => x.workout_minutes)),
+      });
+    }
 
-    // Workout mix: last 28 days → average sessions per week
+    // Workout mix: last 28 days. Entries can hold several comma-separated
+    // activities, so each one is counted on its own.
     const cutoff28 = daysAgo(28);
     const recent = all.filter((e) => e.entry_date >= cutoff28);
     const mix = {};
     for (const e of recent) {
-      const t = (e.workout_type || "").trim();
-      if (!t || t.toLowerCase() === "none") continue;
-      mix[t] = (mix[t] || 0) + 1;
+      for (let t of (e.workout_type || "").split(",")) {
+        t = t.trim();
+        if (!t || t.toLowerCase() === "none") continue;
+        mix[t] = (mix[t] || 0) + 1;
+      }
     }
     const mixData = Object.entries(mix)
-      .map(([type, count]) => ({ type, perWeek: +(count / 4).toFixed(1) }))
-      .sort((a, b) => b.perWeek - a.perWeek);
+      .map(([type, count]) => ({ type, count, perWeek: count / 4 }))
+      .sort((a, b) => b.count - a.count);
 
     return { cur: stats(cur), prev: stats(prev), series, mixData, count: cur.length };
   }, [all, win]);
@@ -213,50 +227,59 @@ export default function DashboardPage() {
         </ResponsiveContainer>
       </Chart>
 
-      <Chart title="Mood & Sleep (1–4)">
+      <Chart title="Mood & Sleep, 14-day rolling average">
         <ResponsiveContainer>
           <LineChart data={series} margin={{ top: 5, right: 5, left: -30, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#ede8d1" />
             <XAxis dataKey="date" tick={{ fontSize: 10 }} minTickGap={30} />
             <YAxis domain={[1, 4]} ticks={[1, 2, 3, 4]} tick={{ fontSize: 10 }} />
-            <Tooltip />
-            <Line type="monotone" dataKey="mood" stroke="#69995d" strokeWidth={2} dot={false} connectNulls />
-            <Line type="monotone" dataKey="sleep" stroke="#b5b09a" strokeWidth={2} dot={false} connectNulls />
+            <Tooltip formatter={(v) => v?.toFixed(2)} />
+            <Legend iconType="plainline" wrapperStyle={{ fontSize: 11 }} />
+            <Line type="monotone" dataKey="mood" name="Mood" stroke="#69995d" strokeWidth={2.5} dot={false} />
+            <Line type="monotone" dataKey="sleep" name="Sleep" stroke="#b5b09a" strokeWidth={2.5} dot={false} />
           </LineChart>
         </ResponsiveContainer>
       </Chart>
 
-      <Chart title="Workout minutes">
+      <Chart title="Workout minutes per day, 14-day rolling average">
         <ResponsiveContainer>
-          <BarChart data={series} margin={{ top: 5, right: 5, left: -25, bottom: 0 }}>
+          <LineChart data={series} margin={{ top: 5, right: 5, left: -25, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#ede8d1" />
             <XAxis dataKey="date" tick={{ fontSize: 10 }} minTickGap={30} />
             <YAxis tick={{ fontSize: 10 }} />
-            <Tooltip />
-            <Bar dataKey="workout" fill="#69995d" radius={[3, 3, 0, 0]} />
-          </BarChart>
+            <Tooltip formatter={(v) => `${Math.round(v)} min`} />
+            <Line type="monotone" dataKey="workout" name="Minutes" stroke="#69995d" strokeWidth={2.5} dot={false} />
+          </LineChart>
         </ResponsiveContainer>
       </Chart>
 
-      <Chart title="Workout mix — sessions per week (last month)">
-        <ResponsiveContainer>
-          <BarChart
-            data={mixData}
-            layout="vertical"
-            margin={{ top: 5, right: 20, left: 30, bottom: 0 }}
-          >
-            <XAxis type="number" tick={{ fontSize: 10 }} />
-            <YAxis
-              type="category"
-              dataKey="type"
-              tick={{ fontSize: 11 }}
-              width={80}
-            />
-            <Tooltip />
-            <Bar dataKey="perWeek" fill="#dc602e" radius={[0, 3, 3, 0]} />
-          </BarChart>
-        </ResponsiveContainer>
-      </Chart>
+      <div className="bg-white border border-divider rounded-xl p-4 mb-4">
+        <h3 className="font-semibold text-sm mb-3">Workout mix, last 28 days</h3>
+        {mixData.length === 0 ? (
+          <p className="text-sm text-ink/50">No workouts logged.</p>
+        ) : (
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="text-xs text-ink/50 border-b border-divider">
+                <th className="text-left font-medium pb-2">Activity</th>
+                <th className="text-right font-medium pb-2">Sessions</th>
+                <th className="text-right font-medium pb-2">Per week</th>
+              </tr>
+            </thead>
+            <tbody>
+              {mixData.map((m) => (
+                <tr key={m.type} className="border-b border-divider/40 last:border-0">
+                  <td className="py-2">{m.type}</td>
+                  <td className="py-2 text-right tabular-nums">{m.count}</td>
+                  <td className="py-2 text-right tabular-nums font-semibold">
+                    {m.perWeek.toFixed(1)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
 
       <p className="text-center text-xs text-ink/40 mb-8">
         {view.count} check-ins in the last {win} days
