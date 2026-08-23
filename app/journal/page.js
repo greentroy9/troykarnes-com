@@ -259,8 +259,8 @@ export default function CheckInPage() {
         }
       >
         <input
-          type="number"
-          inputMode="numeric"
+          type="text"
+          inputMode="numeric" pattern="[0-9]*"
           value={f.days_sober}
           onChange={setE("days_sober")}
           className={inputCls}
@@ -332,8 +332,8 @@ export default function CheckInPage() {
 
       <Field label="How many minutes did you work out?">
         <input
-          type="number"
-          inputMode="numeric"
+          type="text"
+          inputMode="numeric" pattern="[0-9]*"
           value={f.workout_minutes}
           onChange={setE("workout_minutes")}
           className={inputCls}
@@ -371,9 +371,8 @@ export default function CheckInPage() {
 
       <Field label="Today's weight">
         <input
-          type="number"
-          inputMode="decimal"
-          step="0.1"
+          type="text"
+          inputMode="decimal" pattern="[0-9.]*"
           value={f.weight}
           onChange={setE("weight")}
           className={inputCls}
