@@ -43,10 +43,13 @@ function pickAffirmation() {
 // logged number, so a past typo can't carry forward.
 const SOBER_START = "2021-04-20";
 
+// 4/20/2021 is day 1.
 function soberDays(today) {
-  return Math.round(
-    (new Date(`${today}T12:00:00`) - new Date(`${SOBER_START}T12:00:00`)) /
-      86400000
+  return (
+    Math.round(
+      (new Date(`${today}T12:00:00`) - new Date(`${SOBER_START}T12:00:00`)) /
+        86400000
+    ) + 1
   );
 }
 
