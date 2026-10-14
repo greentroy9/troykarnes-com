@@ -39,6 +39,21 @@ function pickAffirmation() {
   return AFFIRMATIONS[idx];
 }
 
+// Sobriety date. The count is always computed from this, never from the last
+// logged number, so a past typo can't carry forward.
+const SOBER_START = "2021-04-20";
+
+function soberDays(today) {
+  return Math.round(
+    (new Date(`${today}T12:00:00`) - new Date(`${SOBER_START}T12:00:00`)) /
+      86400000
+  );
+}
+
+function soberHint(today) {
+  return `Since 4/20/2021 → today makes ${soberDays(today)}`;
+}
+
 function ScaleRow({ value, onChange, low, high }) {
   return (
     <div>
@@ -117,7 +132,7 @@ export default function CheckInPage() {
   const date = localDate();
 
   const [f, setF] = useState({
-    days_sober: "",
+    days_sober: String(soberDays(localDate())),
     sleep: null,
     mood: null,
     goal_accomplished: "",
@@ -250,14 +265,7 @@ export default function CheckInPage() {
         )}
       </header>
 
-      <Field
-        label="Days Sober"
-        hint={
-          info?.yesterday?.days_sober != null
-            ? `Yesterday's count: ${info.yesterday.days_sober}`
-            : null
-        }
-      >
+      <Field label="Days Sober" hint={soberHint(date)}>
         <input
           type="text"
           inputMode="numeric" pattern="[0-9]*"
