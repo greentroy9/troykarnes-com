@@ -39,22 +39,20 @@ function pickAffirmation() {
   return AFFIRMATIONS[idx];
 }
 
-// Sobriety date. The count is always computed from this, never from the last
-// logged number, so a past typo can't carry forward.
-const SOBER_START = "2021-04-20";
-
-// 4/20/2021 is day 1.
-function soberDays(today) {
-  return (
-    Math.round(
-      (new Date(`${today}T12:00:00`) - new Date(`${SOBER_START}T12:00:00`)) /
-        86400000
-    ) + 1
+// Date-gap-aware sober count hint. If a day was missed, the last logged
+// number is stale, so spell out what today's count should be.
+function soberHint(info, today) {
+  const last = info?.yesterday;
+  if (!last || last.days_sober == null || !last.entry_date) return null;
+  const gap = Math.round(
+    (new Date(`${today}T12:00:00`) - new Date(`${last.entry_date}T12:00:00`)) /
+      86400000
   );
-}
-
-function soberHint(today) {
-  return `Since 4/20/2021 → today makes ${soberDays(today)}`;
+  const suggested = last.days_sober + gap;
+  if (gap === 1) {
+    return `Yesterday's count: ${last.days_sober} → today makes ${suggested}`;
+  }
+  return `Last logged: ${last.days_sober}, ${gap} days ago → today makes ${suggested}`;
 }
 
 function ScaleRow({ value, onChange, low, high }) {
@@ -268,7 +266,7 @@ export default function CheckInPage() {
         )}
       </header>
 
-      <Field label="Days Sober" hint={soberHint(date)}>
+      <Field label="Days Sober" hint={soberHint(info, date)}>
         <input
           type="text"
           inputMode="numeric" pattern="[0-9]*"
