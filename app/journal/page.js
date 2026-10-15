@@ -135,7 +135,7 @@ export default function CheckInPage() {
   const date = localDate();
 
   const [f, setF] = useState({
-    days_sober: String(soberDays(localDate())),
+    days_sober: "",
     sleep: null,
     mood: null,
     goal_accomplished: "",
