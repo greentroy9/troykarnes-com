@@ -48,11 +48,10 @@ function soberHint(info, today) {
     (new Date(`${today}T12:00:00`) - new Date(`${last.entry_date}T12:00:00`)) /
       86400000
   );
-  const suggested = last.days_sober + gap;
   if (gap === 1) {
-    return `Yesterday's count: ${last.days_sober} → today makes ${suggested}`;
+    return `Yesterday's count: ${last.days_sober}`;
   }
-  return `Last logged: ${last.days_sober}, ${gap} days ago → today makes ${suggested}`;
+  return `Last logged: ${last.days_sober}, ${gap} days ago`;
 }
 
 function ScaleRow({ value, onChange, low, high }) {
